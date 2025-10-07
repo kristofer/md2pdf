@@ -16,6 +16,9 @@ setup(
     author="Kristofer",
     url="https://github.com/kristofer/md2pdf",
     packages=find_packages(),
+    package_data={
+        "md2pdf": ["css/*.css"],
+    },
     install_requires=[
         "markdown>=3.3.0",
         "weasyprint>=52.0",

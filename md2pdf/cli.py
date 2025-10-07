@@ -22,6 +22,11 @@ def main():
         help="Output PDF file (default: same name as input with .pdf extension)"
     )
     parser.add_argument(
+        "-c", "--css",
+        action="append",
+        help="CSS file(s) to include for styling (can be specified multiple times)"
+    )
+    parser.add_argument(
         "-v", "--version",
         action="version",
         version="%(prog)s 0.1.0"
@@ -42,7 +47,7 @@ def main():
         output_path = input_path.with_suffix('.pdf')
     
     try:
-        convert_md_to_pdf(str(input_path), str(output_path))
+        convert_md_to_pdf(str(input_path), str(output_path), css_files=args.css)
         print(f"Successfully converted '{input_path}' to '{output_path}'")
         return 0
     except Exception as e:
