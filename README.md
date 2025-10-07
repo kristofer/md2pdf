@@ -119,6 +119,20 @@ python -c "from md2pdf.converter import get_bundled_css_path; print(get_bundled_
 md2pdf document.md -c $(python -c "from md2pdf.converter import get_bundled_css_path; print(get_bundled_css_path('pandoc.css'))")
 ```
 
+Or create a simple helper script:
+
+```bash
+#!/bin/bash
+# md2pdf-styled.sh - Convert with bundled CSS
+
+PANDOC_CSS=$(python -c "from md2pdf.converter import get_bundled_css_path; print(get_bundled_css_path('pandoc.css'))")
+FOOTER_CSS=$(python -c "from md2pdf.converter import get_bundled_css_path; print(get_bundled_css_path('footer.css'))")
+
+md2pdf "$1" -c "$PANDOC_CSS" -c "$FOOTER_CSS"
+```
+
+Usage: `./md2pdf-styled.sh document.md`
+
 ### Using Your Own CSS
 
 You can create your own CSS files and apply them to your PDFs:
