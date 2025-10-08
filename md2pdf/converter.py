@@ -70,6 +70,13 @@ def convert_md_to_pdf(input_file, output_file, css_files=None):
                 border-radius: 5px;
                 overflow-x: auto;
             }}
+            pre code {{
+                padding: 0;
+                background-color: transparent;
+            }}
+            pre span:empty {{
+                display: none;
+            }}
             blockquote {{
                 border-left: 4px solid #ccc;
                 margin-left: 0;
