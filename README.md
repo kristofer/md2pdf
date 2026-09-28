@@ -13,6 +13,7 @@ cd md2pdf
 ```
 
 This will:
+
 - Install the md2pdf package and its dependencies
 - Create an executable script in `~/bin/md2pdf`
 - Provide instructions for adding `~/bin` to your PATH
@@ -94,9 +95,16 @@ md2pdf report.md -c base.css -c theme.css
 - Simple command-line interface
 - Converts Markdown to well-formatted PDF
 - Supports standard Markdown syntax
+- Supports local and remote Markdown images
 - Code highlighting
 - Tables and blockquotes
 - Custom CSS styling
+
+Local image paths are resolved relative to the Markdown file:
+
+```markdown
+![Diagram](images/diagram.png)
+```
 
 ## Custom CSS Styling
 

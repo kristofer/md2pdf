@@ -29,8 +29,10 @@ def convert_md_to_pdf(input_file, output_file, css_files=None):
         output_file: Path to the output PDF file
         css_files: Optional list of CSS file paths to include for styling
     """
+    input_path = Path(input_file).resolve()
+
     # Read the markdown file
-    with open(input_file, 'r', encoding='utf-8') as f:
+    with open(input_path, 'r', encoding='utf-8') as f:
         md_content = f.read()
     
     # Convert markdown to HTML
@@ -83,6 +85,10 @@ def convert_md_to_pdf(input_file, output_file, css_files=None):
                 padding-left: 20px;
                 color: #666;
             }}
+            img {{
+                max-width: 100%;
+                height: auto;
+            }}
             table {{
                 border-collapse: collapse;
                 width: 100%;
@@ -105,4 +111,4 @@ def convert_md_to_pdf(input_file, output_file, css_files=None):
     """
     
     # Convert HTML to PDF
-    HTML(string=styled_html).write_pdf(output_file)
+    HTML(string=styled_html, base_url=str(input_path.parent)).write_pdf(output_file)
