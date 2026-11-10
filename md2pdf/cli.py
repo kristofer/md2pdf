@@ -39,6 +39,14 @@ def main():
     if not input_path.exists():
         print(f"Error: Input file '{args.input}' not found", file=sys.stderr)
         return 1
+
+    # A typo'd --css path is silently skipped by the converter, so fail
+    # here instead of producing a PDF without the requested styling.
+    if args.css:
+        for css in args.css:
+            if not Path(css).exists():
+                print(f"Error: CSS file '{css}' not found", file=sys.stderr)
+                return 1
     
     # Determine output path
     if args.output:
